@@ -92,3 +92,10 @@ reference-test adoption matrix is recorded in
 
 The exact upstream revisions used for the port are recorded in
 [`ext/provenance/UPSTREAM.md`](ext/provenance/UPSTREAM.md).
+
+## Publishing
+
+The two public modules are released separately and must be published in
+dependency order: first `marianoguerra/megalodon`, then
+`marianoguerra/megalodon-http`. See [`PUBLISHING.md`](PUBLISHING.md) for the
+first-release checklist.

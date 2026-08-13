@@ -21,3 +21,13 @@ integration:
 # Explicit loopback socket access; skipped by the hermetic suite.
 httpwire:
     moon -C ext test --target native --include-skipped test/httpwire
+
+# Hermetic checks and archive validation for both publishable modules.
+release-check:
+    moon info
+    moon fmt --check
+    moon -C megalodon test --target all
+    moon -C http test --target native
+    moon -C ext test --target native
+    moon -C megalodon package --list --frozen
+    moon -C http package --list --frozen
