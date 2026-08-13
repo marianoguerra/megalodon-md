@@ -1,0 +1,326 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "marianoguerra/megalodon/client"
+
+import {
+  "marianoguerra/megalodon/api",
+  "marianoguerra/megalodon/entity",
+  "marianoguerra/megalodon/oauth",
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub fn authorization_url(String, String, redirect_uri? : String, scopes? : Array[String]) -> String
+
+pub fn page_params(limit? : Int, max_id? : String, since_id? : String, min_id? : String) -> @api.Params
+
+// Errors
+
+// Types and methods
+pub struct Client {
+  transport : &@api.Transport
+  base_url : String
+  software : ServerSoftware
+  access_token : String?
+  user_agent : String
+  extra_headers : Map[String, String]
+}
+pub async fn Client::accept_follow_request(Self, String) -> @api.Response[@entity.EntityObject] raise @api.MegalodonError
+pub async fn Client::add_accounts_to_list(Self, String, Array[String]) -> @api.Response[Json] raise @api.MegalodonError
+pub async fn Client::add_reaction_to_announcement(Self, String, String) -> @api.Response[Json] raise @api.MegalodonError
+pub fn Client::base_url(Self) -> String
+pub async fn Client::block_account(Self, String) -> @api.Response[@entity.EntityObject] raise @api.MegalodonError
+pub async fn Client::block_domain(Self, String) -> @api.Response[Json] raise @api.MegalodonError
+pub async fn Client::bookmark_status(Self, String) -> @api.Response[@entity.Status] raise @api.MegalodonError
+pub async fn Client::call(Self, Endpoint, query? : @api.Params, body? : @api.RequestBody) -> @api.Response[Json] raise @api.MegalodonError
+pub async fn Client::cancel_scheduled_status(Self, String) -> @api.Response[Json] raise @api.MegalodonError
+pub async fn Client::create_app(Self, String, redirect_uris? : String, scopes? : Array[String], website? : String) -> @oauth.AppData raise @api.MegalodonError
+pub async fn Client::create_emoji_reaction(Self, String, String) -> @api.Response[@entity.Status] raise @api.MegalodonError
+pub async fn Client::create_featured_tag(Self, String) -> @api.Response[@entity.EntityObject] raise @api.MegalodonError
+pub async fn Client::create_filter(Self, Json) -> @api.Response[@entity.EntityObject] raise @api.MegalodonError
+pub async fn Client::create_list(Self, String) -> @api.Response[@entity.EntityObject] raise @api.MegalodonError
+pub async fn Client::delete_accounts_from_list(Self, String, Array[String]) -> @api.Response[Json] raise @api.MegalodonError
+pub async fn Client::delete_conversation(Self, String) -> @api.Response[Json] raise @api.MegalodonError
+pub async fn Client::delete_emoji_reaction(Self, String, String) -> @api.Response[@entity.Status] raise @api.MegalodonError
+pub async fn Client::delete_featured_tag(Self, String) -> @api.Response[Json] raise @api.MegalodonError
+pub async fn Client::delete_filter(Self, String) -> @api.Response[Json] raise @api.MegalodonError
+pub async fn Client::delete_list(Self, String) -> @api.Response[Json] raise @api.MegalodonError
+pub async fn Client::delete_push_subscription(Self) -> @api.Response[Json] raise @api.MegalodonError
+pub async fn Client::delete_status(Self, String) -> @api.Response[Json] raise @api.MegalodonError
+pub async fn Client::dismiss_instance_announcement(Self, String) -> @api.Response[Json] raise @api.MegalodonError
+pub async fn Client::dismiss_notification(Self, String) -> @api.Response[Json] raise @api.MegalodonError
+pub async fn Client::dismiss_notifications(Self) -> @api.Response[Json] raise @api.MegalodonError
+pub async fn Client::edit_status(Self, String, status? : String, media_ids? : Array[String], sensitive? : Bool, spoiler_text? : String, language? : String) -> @api.Response[@entity.Status] raise @api.MegalodonError
+pub async fn Client::favourite_status(Self, String) -> @api.Response[@entity.Status] raise @api.MegalodonError
+pub async fn Client::fetch_access_token(Self, String, String, String, redirect_uri? : String) -> @oauth.TokenData raise @api.MegalodonError
+pub async fn Client::follow_account(Self, String, reblogs? : Bool, notify? : Bool) -> @api.Response[@entity.EntityObject] raise @api.MegalodonError
+pub async fn Client::follow_tag(Self, String) -> @api.Response[@entity.EntityObject] raise @api.MegalodonError
+pub async fn Client::get_account(Self, String) -> @api.Response[@entity.Account] raise @api.MegalodonError
+pub async fn Client::get_account_favourites(Self, String, limit? : Int, max_id? : String, min_id? : String) -> @api.Response[Array[@entity.Status]] raise @api.MegalodonError
+pub async fn Client::get_account_followers(Self, String, limit? : Int, max_id? : String, since_id? : String) -> @api.Response[Array[@entity.Account]] raise @api.MegalodonError
+pub async fn Client::get_account_following(Self, String, limit? : Int, max_id? : String, since_id? : String) -> @api.Response[Array[@entity.Account]] raise @api.MegalodonError
+pub async fn Client::get_account_lists(Self, String) -> @api.Response[Array[@entity.EntityObject]] raise @api.MegalodonError
+pub async fn Client::get_account_statuses(Self, String, limit? : Int, max_id? : String, since_id? : String, min_id? : String, pinned? : Bool, exclude_replies? : Bool, exclude_reblogs? : Bool, only_media? : Bool, only_public? : Bool) -> @api.Response[Array[@entity.Status]] raise @api.MegalodonError
+pub async fn Client::get_accounts_in_list(Self, String, limit? : Int, max_id? : String) -> @api.Response[Array[@entity.Account]] raise @api.MegalodonError
+pub async fn Client::get_blocks(Self, limit? : Int, max_id? : String, min_id? : String) -> @api.Response[Array[@entity.Account]] raise @api.MegalodonError
+pub async fn Client::get_bookmarks(Self, limit? : Int, max_id? : String, since_id? : String, min_id? : String) -> @api.Response[Array[@entity.Status]] raise @api.MegalodonError
+pub async fn Client::get_conversation_timeline(Self, limit? : Int, max_id? : String, since_id? : String, min_id? : String) -> @api.Response[Array[@entity.EntityObject]] raise @api.MegalodonError
+pub async fn Client::get_domain_blocks(Self, limit? : Int, max_id? : String) -> @api.Response[Array[String]] raise @api.MegalodonError
+pub async fn Client::get_emoji_reaction(Self, String, String) -> @api.Response[@entity.EntityObject] raise @api.MegalodonError
+pub async fn Client::get_emoji_reactions(Self, String) -> @api.Response[Array[@entity.EntityObject]] raise @api.MegalodonError
+pub async fn Client::get_endorsements(Self, limit? : Int, max_id? : String) -> @api.Response[Array[@entity.Account]] raise @api.MegalodonError
+pub async fn Client::get_favourites(Self, limit? : Int, max_id? : String, min_id? : String) -> @api.Response[Array[@entity.Status]] raise @api.MegalodonError
+pub async fn Client::get_featured_tags(Self) -> @api.Response[Array[@entity.EntityObject]] raise @api.MegalodonError
+pub async fn Client::get_filter(Self, String) -> @api.Response[@entity.EntityObject] raise @api.MegalodonError
+pub async fn Client::get_filters(Self) -> @api.Response[Array[@entity.EntityObject]] raise @api.MegalodonError
+pub async fn Client::get_follow_requests(Self, limit? : Int, max_id? : String) -> @api.Response[Array[@entity.EntityObject]] raise @api.MegalodonError
+pub async fn Client::get_followed_tags(Self) -> @api.Response[Array[@entity.EntityObject]] raise @api.MegalodonError
+pub async fn Client::get_home_timeline(Self, limit? : Int, max_id? : String, since_id? : String, min_id? : String) -> @api.Response[Array[@entity.Status]] raise @api.MegalodonError
+pub async fn Client::get_identity_proofs(Self, String) -> @api.Response[Array[@entity.EntityObject]] raise @api.MegalodonError
+pub async fn Client::get_instance(Self) -> @api.Response[@entity.EntityObject] raise @api.MegalodonError
+pub async fn Client::get_instance_activity(Self) -> @api.Response[Array[@entity.EntityObject]] raise @api.MegalodonError
+pub async fn Client::get_instance_announcements(Self, with_dismissed? : Bool) -> @api.Response[Array[@entity.EntityObject]] raise @api.MegalodonError
+pub async fn Client::get_instance_custom_emojis(Self) -> @api.Response[Array[@entity.EntityObject]] raise @api.MegalodonError
+pub async fn Client::get_instance_directory(Self, limit? : Int, offset? : Int64, order? : DirectoryOrder, local_only? : Bool) -> @api.Response[Array[@entity.Account]] raise @api.MegalodonError
+pub async fn Client::get_instance_peers(Self) -> @api.Response[Array[String]] raise @api.MegalodonError
+pub async fn Client::get_instance_trends(Self, limit? : Int) -> @api.Response[Array[@entity.EntityObject]] raise @api.MegalodonError
+pub async fn Client::get_list(Self, String) -> @api.Response[@entity.EntityObject] raise @api.MegalodonError
+pub async fn Client::get_list_timeline(Self, String, limit? : Int, max_id? : String, since_id? : String, min_id? : String) -> @api.Response[Array[@entity.Status]] raise @api.MegalodonError
+pub async fn Client::get_lists(Self) -> @api.Response[Array[@entity.EntityObject]] raise @api.MegalodonError
+pub async fn Client::get_local_timeline(Self, limit? : Int, max_id? : String, since_id? : String, min_id? : String, only_media? : Bool) -> @api.Response[Array[@entity.Status]] raise @api.MegalodonError
+pub async fn Client::get_markers(Self, Array[String]) -> @api.Response[@entity.Marker] raise @api.MegalodonError
+pub async fn Client::get_media(Self, String) -> @api.Response[@entity.Attachment] raise @api.MegalodonError
+pub async fn Client::get_mutes(Self, limit? : Int, max_id? : String, min_id? : String) -> @api.Response[Array[@entity.Account]] raise @api.MegalodonError
+pub async fn Client::get_notification(Self, String) -> @api.Response[@entity.Notification] raise @api.MegalodonError
+pub async fn Client::get_notifications(Self, limit? : Int, max_id? : String, since_id? : String, min_id? : String, account_id? : String, exclude_types? : Array[@entity.NotificationType]) -> @api.Response[Array[@entity.Notification]] raise @api.MegalodonError
+pub async fn Client::get_poll(Self, String) -> @api.Response[@entity.EntityObject] raise @api.MegalodonError
+pub async fn Client::get_preferences(Self) -> @api.Response[@entity.Preferences] raise @api.MegalodonError
+pub async fn Client::get_public_timeline(Self, limit? : Int, max_id? : String, since_id? : String, min_id? : String, only_media? : Bool, local_only? : Bool) -> @api.Response[Array[@entity.Status]] raise @api.MegalodonError
+pub async fn Client::get_push_subscription(Self) -> @api.Response[@entity.EntityObject] raise @api.MegalodonError
+pub async fn Client::get_relationships(Self, Array[String]) -> @api.Response[Array[@entity.EntityObject]] raise @api.MegalodonError
+pub async fn Client::get_scheduled_status(Self, String) -> @api.Response[@entity.EntityObject] raise @api.MegalodonError
+pub async fn Client::get_scheduled_statuses(Self, limit? : Int, max_id? : String) -> @api.Response[Array[@entity.EntityObject]] raise @api.MegalodonError
+pub async fn Client::get_status(Self, String) -> @api.Response[@entity.Status] raise @api.MegalodonError
+pub async fn Client::get_status_context(Self, String) -> @api.Response[@entity.EntityObject] raise @api.MegalodonError
+pub async fn Client::get_status_favourited_by(Self, String, limit? : Int, max_id? : String) -> @api.Response[Array[@entity.Account]] raise @api.MegalodonError
+pub async fn Client::get_status_reblogged_by(Self, String, limit? : Int, max_id? : String) -> @api.Response[Array[@entity.Account]] raise @api.MegalodonError
+pub async fn Client::get_status_source(Self, String) -> @api.Response[@entity.EntityObject] raise @api.MegalodonError
+pub async fn Client::get_suggested_tags(Self) -> @api.Response[Array[@entity.EntityObject]] raise @api.MegalodonError
+pub async fn Client::get_suggestions(Self, limit? : Int) -> @api.Response[Array[@entity.Account]] raise @api.MegalodonError
+pub async fn Client::get_tag(Self, String) -> @api.Response[@entity.EntityObject] raise @api.MegalodonError
+pub async fn Client::get_tag_timeline(Self, String, limit? : Int, max_id? : String, since_id? : String, min_id? : String, only_media? : Bool, local_only? : Bool) -> @api.Response[Array[@entity.Status]] raise @api.MegalodonError
+pub async fn Client::lookup_account(Self, String) -> @api.Response[@entity.Account] raise @api.MegalodonError
+pub async fn Client::mute_account(Self, String, notifications? : Bool, duration? : Int64) -> @api.Response[@entity.EntityObject] raise @api.MegalodonError
+pub async fn Client::mute_status(Self, String) -> @api.Response[@entity.Status] raise @api.MegalodonError
+pub fn Client::new(&@api.Transport, ServerSoftware, String, access_token? : String, user_agent? : String, extra_headers? : Map[String, String]) -> Self
+pub async fn Client::pin_account(Self, String) -> @api.Response[@entity.EntityObject] raise @api.MegalodonError
+pub async fn Client::pin_status(Self, String) -> @api.Response[@entity.Status] raise @api.MegalodonError
+pub async fn Client::post_status(Self, String, media_ids? : Array[String], in_reply_to_id? : String, sensitive? : Bool, spoiler_text? : String, visibility? : @entity.StatusVisibility, scheduled_at? : String, language? : String, quote_id? : String) -> @api.Response[Json] raise @api.MegalodonError
+pub async fn Client::raw(Self, @api.HttpMethod, String, query? : @api.Params, body? : @api.RequestBody) -> @api.Response[Json] raise @api.MegalodonError
+pub async fn Client::read_conversation(Self, String) -> @api.Response[@entity.EntityObject] raise @api.MegalodonError
+pub async fn Client::read_notifications(Self, Json) -> @api.Response[Json] raise @api.MegalodonError
+pub async fn Client::reblog_status(Self, String) -> @api.Response[@entity.Status] raise @api.MegalodonError
+pub async fn Client::refresh_access_token(Self, String, String, String) -> @oauth.TokenData raise @api.MegalodonError
+pub async fn Client::register_account(Self, Json) -> @api.Response[@entity.EntityObject] raise @api.MegalodonError
+pub async fn Client::register_app(Self, String, redirect_uris? : String, scopes? : Array[String], website? : String) -> @oauth.AppData raise @api.MegalodonError
+pub async fn Client::reject_follow_request(Self, String) -> @api.Response[@entity.EntityObject] raise @api.MegalodonError
+pub async fn Client::remove_reaction_from_announcement(Self, String, String) -> @api.Response[Json] raise @api.MegalodonError
+pub async fn Client::report(Self, Json) -> @api.Response[@entity.EntityObject] raise @api.MegalodonError
+pub async fn Client::revoke_access_token(Self, String, String, String) -> @api.Response[Json] raise @api.MegalodonError
+pub async fn Client::save_markers(Self, Json) -> @api.Response[@entity.Marker] raise @api.MegalodonError
+pub async fn Client::schedule_status(Self, String, String) -> @api.Response[@entity.EntityObject] raise @api.MegalodonError
+pub async fn Client::search(Self, String, search_type? : SearchType, limit? : Int, max_id? : String, min_id? : String, resolve? : Bool, offset? : Int64, following? : Bool, account_id? : String, exclude_unreviewed? : Bool) -> @api.Response[@entity.EntityObject] raise @api.MegalodonError
+pub async fn Client::search_account(Self, String, following? : Bool, resolve? : Bool, limit? : Int, max_id? : String, since_id? : String) -> @api.Response[Array[@entity.Account]] raise @api.MegalodonError
+pub async fn Client::set_account_note(Self, String, String) -> @api.Response[@entity.EntityObject] raise @api.MegalodonError
+pub fn Client::software(Self) -> ServerSoftware
+pub async fn Client::subscribe_account(Self, String) -> @api.Response[@entity.EntityObject] raise @api.MegalodonError
+pub async fn Client::subscribe_push_notification(Self, Json) -> @api.Response[@entity.EntityObject] raise @api.MegalodonError
+pub async fn Client::unblock_account(Self, String) -> @api.Response[@entity.EntityObject] raise @api.MegalodonError
+pub async fn Client::unblock_domain(Self, String) -> @api.Response[Json] raise @api.MegalodonError
+pub async fn Client::unbookmark_status(Self, String) -> @api.Response[@entity.Status] raise @api.MegalodonError
+pub async fn Client::unfavourite_status(Self, String) -> @api.Response[@entity.Status] raise @api.MegalodonError
+pub async fn Client::unfollow_account(Self, String) -> @api.Response[@entity.EntityObject] raise @api.MegalodonError
+pub async fn Client::unfollow_tag(Self, String) -> @api.Response[@entity.EntityObject] raise @api.MegalodonError
+pub async fn Client::unmute_account(Self, String) -> @api.Response[@entity.EntityObject] raise @api.MegalodonError
+pub async fn Client::unmute_status(Self, String) -> @api.Response[@entity.Status] raise @api.MegalodonError
+pub async fn Client::unpin_account(Self, String) -> @api.Response[@entity.EntityObject] raise @api.MegalodonError
+pub async fn Client::unpin_status(Self, String) -> @api.Response[@entity.Status] raise @api.MegalodonError
+pub async fn Client::unreblog_status(Self, String) -> @api.Response[@entity.Status] raise @api.MegalodonError
+pub async fn Client::unsubscribe_account(Self, String) -> @api.Response[@entity.EntityObject] raise @api.MegalodonError
+pub async fn Client::update_credentials(Self, @api.RequestBody) -> @api.Response[@entity.Account] raise @api.MegalodonError
+pub async fn Client::update_filter(Self, String, Json) -> @api.Response[@entity.EntityObject] raise @api.MegalodonError
+pub async fn Client::update_list(Self, String, String) -> @api.Response[@entity.EntityObject] raise @api.MegalodonError
+pub async fn Client::update_media(Self, String, description? : String, focus? : String) -> @api.Response[@entity.Attachment] raise @api.MegalodonError
+pub async fn Client::update_push_subscription(Self, Json) -> @api.Response[@entity.EntityObject] raise @api.MegalodonError
+pub async fn Client::upload_media(Self, Bytes, String, file_name? : String, description? : String, focus? : String, boundary? : String) -> @api.Response[@entity.UploadMedia] raise @api.MegalodonError
+pub async fn Client::verify_account_credentials(Self) -> @api.Response[@entity.Account] raise @api.MegalodonError
+pub async fn Client::verify_app_credentials(Self) -> @api.Response[@entity.EntityObject] raise @api.MegalodonError
+pub async fn Client::vote_poll(Self, String, Array[Int64]) -> @api.Response[@entity.EntityObject] raise @api.MegalodonError
+
+pub(all) enum DirectoryOrder {
+  Active
+  New
+} derive(Eq, @debug.Debug)
+pub fn DirectoryOrder::to_string(Self) -> String
+
+pub(all) enum Endpoint {
+  CreateApp
+  FetchAccessToken
+  RefreshAccessToken
+  RevokeAccessToken
+  VerifyAppCredentials
+  RegisterAccount
+  VerifyAccountCredentials
+  UpdateCredentials
+  GetAccount(String)
+  GetAccountStatuses(String)
+  GetAccountFavourites(String)
+  SubscribeAccount(String)
+  UnsubscribeAccount(String)
+  GetAccountFollowers(String)
+  GetAccountFollowing(String)
+  GetAccountLists(String)
+  GetIdentityProofs(String)
+  FollowAccount(String)
+  UnfollowAccount(String)
+  BlockAccount(String)
+  UnblockAccount(String)
+  MuteAccount(String)
+  UnmuteAccount(String)
+  PinAccount(String)
+  UnpinAccount(String)
+  SetAccountNote(String)
+  GetRelationships
+  SearchAccount
+  LookupAccount
+  GetBookmarks
+  GetFavourites
+  GetMutes
+  GetBlocks
+  GetDomainBlocks
+  BlockDomain
+  UnblockDomain
+  GetFilters
+  GetFilter(String)
+  CreateFilter
+  UpdateFilter(String)
+  DeleteFilter(String)
+  Report
+  GetFollowRequests
+  AcceptFollowRequest(String)
+  RejectFollowRequest(String)
+  GetEndorsements
+  GetFeaturedTags
+  CreateFeaturedTag
+  DeleteFeaturedTag(String)
+  GetSuggestedTags
+  GetPreferences
+  GetFollowedTags
+  GetSuggestions
+  GetTag(String)
+  FollowTag(String)
+  UnfollowTag(String)
+  PostStatus
+  GetStatus(String)
+  GetStatusSource(String)
+  EditStatus(String)
+  DeleteStatus(String)
+  GetStatusContext(String)
+  GetStatusRebloggedBy(String)
+  GetStatusFavouritedBy(String)
+  FavouriteStatus(String)
+  UnfavouriteStatus(String)
+  ReblogStatus(String)
+  UnreblogStatus(String)
+  BookmarkStatus(String)
+  UnbookmarkStatus(String)
+  MuteStatus(String)
+  UnmuteStatus(String)
+  PinStatus(String)
+  UnpinStatus(String)
+  UploadMedia
+  GetMedia(String)
+  UpdateMedia(String)
+  GetPoll(String)
+  VotePoll(String)
+  GetScheduledStatuses
+  GetScheduledStatus(String)
+  ScheduleStatus(String)
+  CancelScheduledStatus(String)
+  GetPublicTimeline
+  GetLocalTimeline
+  GetTagTimeline(String)
+  GetHomeTimeline
+  GetListTimeline(String)
+  GetConversationTimeline
+  DeleteConversation(String)
+  ReadConversation(String)
+  GetLists
+  GetList(String)
+  CreateList
+  UpdateList(String)
+  DeleteList(String)
+  GetAccountsInList(String)
+  AddAccountsToList(String)
+  DeleteAccountsFromList(String)
+  GetMarkers
+  SaveMarkers
+  GetNotifications
+  GetNotification(String)
+  DismissNotifications
+  DismissNotification(String)
+  ReadNotifications
+  SubscribePushNotification
+  GetPushSubscription
+  UpdatePushSubscription
+  DeletePushSubscription
+  Search
+  GetInstance
+  GetInstancePeers
+  GetInstanceActivity
+  GetInstanceTrends
+  GetInstanceDirectory
+  GetInstanceCustomEmojis
+  GetInstanceAnnouncements
+  DismissInstanceAnnouncement(String)
+  AddReactionToAnnouncement(id~ : String, name~ : String)
+  RemoveReactionFromAnnouncement(id~ : String, name~ : String)
+  CreateEmojiReaction(id~ : String, emoji~ : String)
+  DeleteEmojiReaction(id~ : String, emoji~ : String)
+  GetEmojiReactions(String)
+  GetEmojiReaction(id~ : String, emoji~ : String)
+} derive(Eq, @debug.Debug)
+pub fn Endpoint::http_method(Self) -> @api.HttpMethod
+pub fn Endpoint::path(Self) -> String
+
+pub(all) struct PollOptions {
+  options : Array[String]
+  expires_in : Int64?
+  multiple : Bool?
+  hide_totals : Bool?
+} derive(Eq, @debug.Debug)
+
+pub(all) enum SearchType {
+  Accounts
+  Hashtags
+  Statuses
+} derive(Eq, @debug.Debug)
+pub fn SearchType::to_string(Self) -> String
+
+pub(all) enum ServerSoftware {
+  Mastodon
+  Pleroma
+  Friendica
+  Firefish
+  GoToSocial
+  Pixelfed
+  Akkoma
+  Hometown
+  Iceshrimp
+  Unknown(String)
+} derive(Eq, @debug.Debug)
+pub fn ServerSoftware::parse(String) -> Self
+pub fn ServerSoftware::to_string(Self) -> String
+
+// Type aliases
+
+// Traits

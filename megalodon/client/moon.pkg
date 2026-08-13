@@ -1,0 +1,5 @@
+import {
+  "marianoguerra/megalodon/api",
+  "marianoguerra/megalodon/entity",
+  "marianoguerra/megalodon/oauth",
+}

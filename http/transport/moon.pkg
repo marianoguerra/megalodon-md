@@ -1,0 +1,8 @@
+import {
+  "marianoguerra/megalodon/api",
+  "moonbitlang/async/http",
+  "moonbitlang/async/io",
+  "moonbitlang/async/tls",
+}
+
+supported_targets = "+native"

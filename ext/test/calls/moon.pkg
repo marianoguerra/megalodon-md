@@ -1,0 +1,15 @@
+import {
+}
+
+import {
+  "marianoguerra/megalodon/api",
+  "marianoguerra/megalodon/client",
+  "marianoguerra/megalodon/detector",
+  "marianoguerra/megalodon/entity",
+  "marianoguerra/megalodon/testing",
+  "marianoguerra/megalodon-http/transport",
+  "moonbitlang/async",
+  "moonbitlang/core/json",
+} for "test"
+
+supported_targets = "+native"

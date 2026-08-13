@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install MoonBit
+        run: |
+          curl -fsSL https://cli.moonbitlang.com/install/unix.sh | bash
+          echo "$HOME/.moon/bin" >> "$GITHUB_PATH"
+      - name: Resolve dependencies
+        run: moon update
+      - name: Check portable core on every backend
+        run: moon -C megalodon check --target all
+      - name: Test portable core on every backend
+        run: moon -C megalodon test --target all
+      - name: Test native transport and conformance suite
+        run: |
+          moon -C http test --target native
+          moon -C ext test --target native
+      - name: Check formatting
+        run: moon fmt --check

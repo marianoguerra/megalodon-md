@@ -1,0 +1,40 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "marianoguerra/megalodon/oauth"
+
+import {
+  "marianoguerra/megalodon/api",
+  "moonbitlang/core/debug",
+}
+
+// Values
+
+// Errors
+
+// Types and methods
+pub(all) struct AppData {
+  id : String
+  name : String
+  website : String?
+  redirect_uri : String?
+  client_id : String
+  client_secret : String
+  url : String?
+  session_token : String?
+  raw : Json
+} derive(Eq, @debug.Debug)
+pub fn AppData::from_json(Json) -> Self raise @api.MegalodonError
+
+pub(all) struct TokenData {
+  access_token : String
+  token_type : String
+  scope : String?
+  created_at : Int64?
+  expires_in : Int64?
+  refresh_token : String?
+  raw : Json
+} derive(Eq, @debug.Debug)
+pub fn TokenData::from_json(Json) -> Self raise @api.MegalodonError
+
+// Type aliases
+
+// Traits

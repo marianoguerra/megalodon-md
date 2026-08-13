@@ -1,0 +1,18 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "marianoguerra/megalodon/detector"
+
+import {
+  "marianoguerra/megalodon/api",
+  "marianoguerra/megalodon/client",
+}
+
+// Values
+pub async fn detect(&@api.Transport, String) -> @client.ServerSoftware raise @api.MegalodonError
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

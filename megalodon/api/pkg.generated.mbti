@@ -1,0 +1,117 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "marianoguerra/megalodon/api"
+
+import {
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub const USER_AGENT : String = "marianoguerra-megalodon-mb/0.1.0"
+
+pub fn build_request(String, String, HttpMethod, query? : Params, body? : RequestBody, access_token? : String, user_agent? : String, extra_headers? : Map[String, String]) -> HttpRequest
+
+pub fn interpret(HttpResponse) -> Response[Json] raise MegalodonError
+
+pub fn multipart_file(String, String, String, String, Bytes, fields? : Array[(String, String)]) -> MultipartBody raise MegalodonError
+
+pub fn pagination_from_headers(Map[String, String]) -> Pagination
+
+pub fn percent_encode(String) -> String
+
+pub fn to_megalodon_error(Error) -> MegalodonError
+
+// Errors
+pub(all) suberror MegalodonError {
+  InvalidRequest(String)
+  RequestFailed(String)
+  HttpStatus(status~ : Int, body~ : String, headers~ : Map[String, String])
+  PartialContent(headers~ : Map[String, String])
+  InvalidJson(String)
+  InvalidEntity(entity~ : String, detail~ : String)
+  UnknownServer(String)
+  NodeInfo(String)
+} derive(@debug.Debug)
+pub fn MegalodonError::describe_error(Self) -> String
+pub fn MegalodonError::status(Self) -> Int?
+pub impl Show for MegalodonError
+
+// Types and methods
+pub(all) enum HttpMethod {
+  Get
+  Post
+  Put
+  Patch
+  Delete
+} derive(Eq, @debug.Debug)
+pub fn HttpMethod::to_string(Self) -> String
+
+pub(all) struct HttpRequest {
+  url : String
+  http_method : HttpMethod
+  headers : Map[String, String]
+  body : Bytes
+} derive(Eq, @debug.Debug)
+pub fn HttpRequest::body_text(Self) -> String
+pub fn HttpRequest::content_length(Self) -> Int
+
+pub(all) struct HttpResponse {
+  status : Int
+  headers : Map[String, String]
+  body : Bytes
+} derive(Eq, @debug.Debug)
+pub fn HttpResponse::body_text(Self) -> String
+pub fn HttpResponse::header(Self, String) -> String?
+
+pub(all) struct MultipartBody {
+  content_type : String
+  body : Bytes
+} derive(Eq, @debug.Debug)
+
+pub(all) struct Pagination {
+  next : String?
+  prev : String?
+} derive(Eq, @debug.Debug)
+
+pub(all) enum ParamValue {
+  Str(String)
+  Int(Int64)
+  Bool(Bool)
+  Strs(Array[String])
+  Ints(Array[Int64])
+} derive(Eq, @debug.Debug)
+
+pub(all) struct Params {
+  entries : Array[(String, ParamValue)]
+} derive(Eq, @debug.Debug)
+pub fn Params::encode(Self) -> String
+pub fn Params::new() -> Self
+pub fn Params::of(Array[(String, ParamValue)]) -> Self
+pub fn Params::put(Self, String, ParamValue) -> Unit
+pub fn Params::put_bool(Self, String, Bool?) -> Unit
+pub fn Params::put_int(Self, String, Int64?) -> Unit
+pub fn Params::put_opt(Self, String, ParamValue?) -> Unit
+pub fn Params::put_string(Self, String, String?) -> Unit
+pub fn Params::put_strings(Self, String, Array[String]?) -> Unit
+
+pub(all) enum RequestBody {
+  Empty
+  Json(Json)
+  Form(Params)
+  Raw(bytes~ : Bytes, content_type~ : String)
+} derive(Eq, @debug.Debug)
+
+pub(all) struct Response[T] {
+  data : T
+  status : Int
+  headers : Map[String, String]
+  pagination : Pagination
+} derive(Eq, @debug.Debug)
+pub fn[A, B] Response::map(Self[A], (A) -> B) -> Self[B]
+
+// Type aliases
+
+// Traits
+pub(open) trait Transport {
+  async fn send(Self, HttpRequest) -> HttpResponse
+  fn describe(Self) -> String
+}

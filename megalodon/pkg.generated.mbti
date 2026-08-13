@@ -1,0 +1,161 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "marianoguerra/megalodon"
+
+import {
+  "marianoguerra/megalodon/api",
+  "marianoguerra/megalodon/client",
+  "marianoguerra/megalodon/entity",
+  "marianoguerra/megalodon/oauth",
+}
+
+// Values
+pub async fn detector(&@api.Transport, String) -> @client.ServerSoftware raise @api.MegalodonError
+
+pub fn generator(&@api.Transport, @client.ServerSoftware, String, access_token? : String, user_agent? : String) -> @client.Client
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+pub using @entity {type Account}
+
+pub using @entity {type EntityObject as Activity}
+
+pub using @entity {type EntityObject as Announcement}
+
+pub using @oauth {type AppData}
+
+pub using @entity {type EntityObject as Application}
+
+pub using @entity {type AsyncAttachment}
+
+pub using @entity {type Attachment}
+
+pub using @entity {type AttachmentType}
+
+pub using @entity {type EntityObject as Card}
+
+pub using @client {type Client}
+
+pub using @entity {type EntityObject as Context}
+
+pub using @entity {type EntityObject as Conversation}
+
+pub using @client {type DirectoryOrder}
+
+pub using @entity {type EntityObject as Emoji}
+
+pub using @client {type Endpoint}
+
+pub using @entity {type ExpandMedia}
+
+pub using @entity {type EntityObject as FeaturedTag}
+
+pub using @entity {type EntityObject as Field}
+
+pub using @entity {type EntityObject as Filter}
+
+pub using @entity {type FilterContext}
+
+pub using @entity {type EntityObject as FollowRequest}
+
+pub using @entity {type EntityObject as History}
+
+pub using @api {type HttpMethod}
+
+pub using @api {type HttpRequest}
+
+pub using @api {type HttpResponse}
+
+pub using @entity {type EntityObject as IdentityProof}
+
+pub using @entity {type EntityObject as Instance}
+
+pub using @entity {type EntityObject as List}
+
+pub using @entity {type Marker}
+
+pub using @entity {type MarkerEntry}
+
+pub using @api {type MegalodonError}
+
+pub using @entity {type EntityObject as Mention}
+
+pub using @api {type MultipartBody}
+
+pub using @entity {type Notification}
+
+pub using @entity {type NotificationType}
+
+pub using @api {type Pagination}
+
+pub using @api {type ParamValue}
+
+pub using @api {type Params}
+
+pub using @entity {type EntityObject as Poll}
+
+pub using @entity {type EntityObject as PollOption}
+
+pub using @client {type PollOptions}
+
+pub using @entity {type Preferences}
+
+pub using @entity {type EntityObject as PushSubscription}
+
+pub using @entity {type EntityObject as Quote}
+
+pub using @entity {type EntityObject as QuoteApproval}
+
+pub using @entity {type QuoteState}
+
+pub using @entity {type EntityObject as QuotedStatus}
+
+pub using @entity {type EntityObject as Reaction}
+
+pub using @entity {type EntityObject as Relationship}
+
+pub using @entity {type EntityObject as Report}
+
+pub using @api {type RequestBody}
+
+pub using @api {type Response}
+
+pub using @entity {type EntityObject as Results}
+
+pub using @entity {type EntityObject as Role}
+
+pub using @entity {type EntityObject as ScheduledStatus}
+
+pub using @client {type SearchType}
+
+pub using @client {type ServerSoftware}
+
+pub using @entity {type EntityObject as ShallowQuote}
+
+pub using @entity {type EntityObject as Source}
+
+pub using @entity {type EntityObject as Stats}
+
+pub using @entity {type Status}
+
+pub using @entity {type StatusParams}
+
+pub using @entity {type EntityObject as StatusSource}
+
+pub using @entity {type StatusVisibility}
+
+pub using @entity {type EntityObject as Tag}
+
+pub using @entity {type EntityObject as Token}
+
+pub using @oauth {type TokenData}
+
+pub using @entity {type EntityObject as URLs}
+
+pub using @entity {type UploadMedia}
+
+pub using @api {trait Transport}
+
+// Traits

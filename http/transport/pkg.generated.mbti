@@ -1,0 +1,24 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "marianoguerra/megalodon-http/transport"
+
+import {
+  "marianoguerra/megalodon/api",
+  "moonbitlang/async/tls",
+}
+
+// Values
+pub fn split_url(String) -> (String, String) raise @api.MegalodonError
+
+// Errors
+
+// Types and methods
+pub struct HttpTransport {
+  description : String
+  trust : @tls.TrustedRoot?
+}
+pub fn HttpTransport::new(description? : String, trust? : @tls.TrustedRoot) -> Self
+pub impl @api.Transport for HttpTransport
+
+// Type aliases
+
+// Traits

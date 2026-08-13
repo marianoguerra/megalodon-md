@@ -1,0 +1,237 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "marianoguerra/megalodon/entity"
+
+import {
+  "marianoguerra/megalodon/api",
+  "moonbitlang/core/debug",
+}
+
+// Values
+
+// Errors
+
+// Types and methods
+pub(all) struct Account {
+  id : String
+  username : String
+  acct : String
+  display_name : String
+  created_at : String
+  note : String
+  url : String
+  avatar : String
+  header : String
+  locked : Bool
+  bot : Bool
+  raw : Json
+} derive(Eq, @debug.Debug)
+pub fn Account::from_json(Json) -> Self raise @api.MegalodonError
+pub fn Account::to_json(Self) -> Json
+
+pub(all) struct AsyncAttachment {
+  id : String
+  attachment_type : AttachmentType
+  url : String?
+  raw : Json
+} derive(Eq, @debug.Debug)
+pub fn AsyncAttachment::from_json(Json) -> Self raise @api.MegalodonError
+
+pub(all) struct Attachment {
+  id : String
+  attachment_type : AttachmentType
+  url : String
+  preview_url : String?
+  description : String?
+  blurhash : String?
+  raw : Json
+} derive(Eq, @debug.Debug)
+pub fn Attachment::from_json(Json) -> Self raise @api.MegalodonError
+pub fn Attachment::to_json(Self) -> Json
+
+pub(all) enum AttachmentType {
+  Image
+  Gifv
+  Video
+  Audio
+  Unknown
+} derive(Eq, @debug.Debug)
+pub fn AttachmentType::parse(String) -> Self
+pub fn AttachmentType::to_string(Self) -> String
+
+pub(all) enum Category {
+  Spam
+  Violation
+  Other
+} derive(Eq, @debug.Debug)
+pub fn Category::to_string(Self) -> String
+
+#alias(Activity)
+#alias(Announcement)
+#alias(Application)
+#alias(Card)
+#alias(Context)
+#alias(Conversation)
+#alias(Emoji)
+#alias(FeaturedTag)
+#alias(Field)
+#alias(Filter)
+#alias(FollowRequest)
+#alias(History)
+#alias(IdentityProof)
+#alias(Instance)
+#alias(List)
+#alias(Mention)
+#alias(Poll)
+#alias(PollOption)
+#alias(PushSubscription)
+#alias(Quote)
+#alias(QuoteApproval)
+#alias(QuotedStatus)
+#alias(Reaction)
+#alias(Relationship)
+#alias(Report)
+#alias(Results)
+#alias(Role)
+#alias(ScheduledStatus)
+#alias(ShallowQuote)
+#alias(Source)
+#alias(Stats)
+#alias(StatusSource)
+#alias(Tag)
+#alias(Token)
+#alias(URLs)
+pub(all) struct EntityObject {
+  raw : Json
+} derive(Eq, @debug.Debug)
+pub fn EntityObject::from_json(Json, String) -> Self raise @api.MegalodonError
+pub fn EntityObject::to_json(Self) -> Json
+
+pub(all) enum ExpandMedia {
+  Default
+  ShowAll
+  HideAll
+} derive(Eq, @debug.Debug)
+pub fn ExpandMedia::parse(String) -> Self raise @api.MegalodonError
+pub fn ExpandMedia::to_string(Self) -> String
+
+pub(all) enum FilterContext {
+  Home
+  Notifications
+  Public
+  Thread
+} derive(Eq, @debug.Debug)
+pub fn FilterContext::to_string(Self) -> String
+
+pub(all) struct Marker {
+  home : MarkerEntry?
+  notifications : MarkerEntry?
+  raw : Json
+} derive(Eq, @debug.Debug)
+pub fn Marker::from_json(Json) -> Self raise @api.MegalodonError
+pub fn Marker::to_json(Self) -> Json
+
+pub(all) struct MarkerEntry {
+  last_read_id : String
+  version : Int64
+  updated_at : String
+  unread_count : Int64?
+  raw : Json
+} derive(Eq, @debug.Debug)
+
+pub(all) struct Notification {
+  id : String
+  notification_type : NotificationType
+  created_at : String
+  account : Account
+  status : Status?
+  raw : Json
+} derive(Eq, @debug.Debug)
+pub fn Notification::from_json(Json) -> Self raise @api.MegalodonError
+pub fn Notification::to_json(Self) -> Json
+
+pub(all) enum NotificationType {
+  Follow
+  FollowRequest
+  Mention
+  Reblog
+  Favourite
+  PollVote
+  PollExpired
+  Status
+  Reaction
+  Update
+  Move
+  AdminSignup
+  AdminReport
+  GroupInvited
+  App
+  Quote
+  QuotedUpdate
+  Unknown
+} derive(Eq, @debug.Debug)
+pub fn NotificationType::parse(String) -> Self
+pub fn NotificationType::to_string(Self) -> String
+
+pub(all) struct Preferences {
+  posting_default_visibility : StatusVisibility
+  posting_default_sensitive : Bool
+  posting_default_language : String?
+  reading_expand_media : ExpandMedia
+  reading_expand_spoilers : Bool
+  raw : Json
+} derive(Eq, @debug.Debug)
+pub fn Preferences::from_json(Json) -> Self raise @api.MegalodonError
+pub fn Preferences::to_json(Self) -> Json
+
+pub(all) enum QuoteState {
+  Pending
+  Accepted
+  Rejected
+  Revoked
+  Deleted
+  Unauthorized
+  Unknown(String)
+} derive(Eq, @debug.Debug)
+
+pub(all) struct Status {
+  id : String
+  uri : String
+  url : String?
+  account : Account
+  content : String
+  plain_content : String?
+  created_at : String
+  spoiler_text : String
+  sensitive : Bool
+  visibility : StatusVisibility
+  raw : Json
+} derive(Eq, @debug.Debug)
+pub fn Status::from_json(Json) -> Self raise @api.MegalodonError
+pub fn Status::to_json(Self) -> Json
+
+pub(all) struct StatusParams {
+  text : String
+  spoiler_text : String?
+  sensitive : Bool?
+  language : String?
+} derive(Eq, @debug.Debug)
+
+pub(all) enum StatusVisibility {
+  Public
+  Unlisted
+  Private
+  Direct
+  Local
+} derive(Eq, @debug.Debug)
+pub fn StatusVisibility::parse(String) -> Self raise @api.MegalodonError
+pub fn StatusVisibility::to_string(Self) -> String
+
+pub(all) enum UploadMedia {
+  Attachment(Attachment)
+  AsyncAttachment(AsyncAttachment)
+} derive(Eq, @debug.Debug)
+pub fn UploadMedia::from_json(Json) -> Self raise @api.MegalodonError
+
+// Type aliases
+
+// Traits
