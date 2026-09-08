@@ -1,6 +1,6 @@
 name = "marianoguerra/megalodon-http"
 
-version = "0.1.0"
+version = "0.1.1"
 
 readme = "README.md"
 
@@ -15,6 +15,6 @@ preferred_target = "native"
 description = "Native HTTP transport for marianoguerra/megalodon."
 
 import {
-  "marianoguerra/megalodon@0.1.0",
-  "moonbitlang/async@0.20.4",
+  "marianoguerra/megalodon@0.1.1",
+  "moonbitlang/async@0.21.3",
 }

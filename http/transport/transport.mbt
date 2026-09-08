@@ -16,7 +16,7 @@ pub fn HttpTransport::new(
   description? : String = "native HTTP",
   trust? : @tls.TrustedRoot,
 ) -> HttpTransport {
-  { description, trust }
+  { description, trust, }
 }
 
 ///|
@@ -35,16 +35,18 @@ pub impl @api.Transport for HttpTransport with fn send(self, request) {
     return self.send_convenience(request)
   }
   let (origin, path) = split_url(request.url)
-  let headers : Map[String, String] = Map([])
+  let headers : Map[@http.CaseInsensitiveString, String] = Map([])
   for name, value in request.headers {
     // The async HTTP client owns framing headers. Supplying a stale length is
     // especially dangerous for UTF-8 and multipart request bodies.
     if name.to_lower() != "content-length" {
-      headers[name] = value
+      headers[@http.CaseInsensitiveString(name)] = value
     }
   }
   if request.body.length() > 0 {
-    headers["content-length"] = request.body.length().to_string()
+    headers[@http.CaseInsensitiveString("content-length")] = request.body
+      .length()
+      .to_string()
   }
   let client = @http.Client(origin, trust?=self.trust) catch {
     e => raise @api.RequestFailed("\{self.description}: \{e}")
@@ -62,10 +64,10 @@ pub impl @api.Transport for HttpTransport with fn send(self, request) {
     let body = client.read_all().binary()
     let response_headers : Map[String, String] = Map([])
     for name, value in response.headers {
-      response_headers[name.to_lower()] = value
+      response_headers[name.0.to_lower()] = value
     }
     client.close()
-    { status: response.code, headers: response_headers, body }
+    { status: response.code, headers: response_headers, body, }
   } catch {
     e => {
       client.close()
@@ -82,10 +84,10 @@ async fn HttpTransport::send_convenience(
   self : Self,
   request : @api.HttpRequest,
 ) -> @api.HttpResponse {
-  let headers : Map[String, String] = Map([])
+  let headers : Map[@http.CaseInsensitiveString, String] = Map([])
   for name, value in request.headers {
     if name.to_lower() != "content-length" {
-      headers[name] = value
+      headers[@http.CaseInsensitiveString(name)] = value
     }
   }
   let (response, body) = try {
@@ -100,9 +102,9 @@ async fn HttpTransport::send_convenience(
   }
   let response_headers : Map[String, String] = Map([])
   for name, value in response.headers {
-    response_headers[name.to_lower()] = value
+    response_headers[name.0.to_lower()] = value
   }
-  { status: response.code, headers: response_headers, body: body.binary() }
+  { status: response.code, headers: response_headers, body: body.binary(), }
 }
 
 ///|

@@ -8,8 +8,8 @@ install `marianoguerra/megalodon-http`.
 For a native application, add both modules:
 
 ```sh
-moon add marianoguerra/megalodon@0.1.0
-moon add marianoguerra/megalodon-http@0.1.0
+moon add marianoguerra/megalodon@0.1.1
+moon add marianoguerra/megalodon-http@0.1.1
 ```
 
 Import the client and native transport packages in `moon.pkg`:

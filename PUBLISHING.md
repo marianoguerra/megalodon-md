@@ -31,17 +31,21 @@ is not published.
    moon -C megalodon publish --frozen
    ```
 
-4. Once `marianoguerra/megalodon@0.1.0` is available from the registry,
+4. Once `marianoguerra/megalodon@0.1.1` is available from the registry,
    publish the native transport:
 
    ```sh
    moon update
-   moon -C http publish --dry-run --frozen
-   moon -C http publish --frozen
+   moon -C http publish --dry-run
+   moon -C http publish
    ```
 
-5. Confirm both registry pages, then tag the exact release commit as `v0.1.0`.
+   These two run without `--frozen`: the isolated validation must download the
+   freshly published `marianoguerra/megalodon` into its own scratch module
+   directory, which `--frozen` forbids.
+
+5. Confirm both registry pages, then tag the exact release commit as `v0.1.1`.
 
 The dependency order matters because the isolated validation of
-`megalodon-http` resolves `marianoguerra/megalodon@0.1.0` from Mooncakes rather
+`megalodon-http` resolves `marianoguerra/megalodon@0.1.1` from Mooncakes rather
 than from this workspace.

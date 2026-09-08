@@ -54,7 +54,7 @@ pub fn Marker::from_json(json : Json) -> Marker raise @api.MegalodonError {
     Some(value) => Some(marker_entry(value, "Marker.notifications"))
     None => None
   }
-  { home, notifications, raw: json }
+  { home, notifications, raw: json, }
 }
 
 ///|

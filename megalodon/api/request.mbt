@@ -1,5 +1,5 @@
 ///|
-pub const USER_AGENT : String = "marianoguerra-megalodon-mb/0.1.0"
+pub const USER_AGENT : String = "marianoguerra-megalodon-mb/0.1.1"
 
 ///|
 pub(all) enum RequestBody {
@@ -58,7 +58,7 @@ pub fn build_request(
   for name, value in extra_headers {
     headers[name.to_lower()] = value
   }
-  { url, http_method, headers, body: bytes }
+  { url, http_method, headers, body: bytes, }
 }
 
 ///|

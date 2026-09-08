@@ -11,7 +11,7 @@ pub fn EntityObject::from_json(
   name : String,
 ) -> EntityObject raise @api.MegalodonError {
   ignore(object_of(json, name))
-  { raw: json }
+  { raw: json, }
 }
 
 ///|

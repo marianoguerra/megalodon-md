@@ -11,7 +11,7 @@ pub fn FakeTransport::new(
   responses : Array[@api.HttpResponse],
   description? : String = "fake transport",
 ) -> FakeTransport {
-  { responses, sent: [], index: 0, description }
+  { responses, sent: [], index: 0, description, }
 }
 
 ///|
@@ -25,7 +25,7 @@ pub fn response(
     let (name, value) = entry
     normalized[name.to_lower()] = value
   }
-  { status, headers: normalized, body: @utf8.encode(body) }
+  { status, headers: normalized, body: @utf8.encode(body), }
 }
 
 ///|

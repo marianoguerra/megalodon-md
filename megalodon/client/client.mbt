@@ -63,7 +63,7 @@ pub fn Client::new(
   user_agent? : String = @api.USER_AGENT,
   extra_headers? : Map[String, String] = Map([]),
 ) -> Client {
-  { transport, base_url, software, access_token, user_agent, extra_headers }
+  { transport, base_url, software, access_token, user_agent, extra_headers, }
 }
 
 ///|

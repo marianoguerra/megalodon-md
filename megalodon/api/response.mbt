@@ -25,7 +25,7 @@ pub fn[A, B] Response::map(self : Response[A], f : (A) -> B) -> Response[B] {
 ///|
 pub fn pagination_from_headers(headers : Map[String, String]) -> Pagination {
   guard headers.get("link") is Some(value) else {
-    return { next: None, prev: None }
+    return { next: None, prev: None, }
   }
   let mut next : String? = None
   let mut prev : String? = None
@@ -41,5 +41,5 @@ pub fn pagination_from_headers(headers : Map[String, String]) -> Pagination {
       prev = Some(url)
     }
   }
-  { next, prev }
+  { next, prev, }
 }

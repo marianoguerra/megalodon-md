@@ -6,8 +6,8 @@ The core module is target-independent; this module contains the dependency on
 `moonbitlang/async/http` and deliberately supports only the native target.
 
 ```sh
-moon add marianoguerra/megalodon@0.1.0
-moon add marianoguerra/megalodon-http@0.1.0
+moon add marianoguerra/megalodon@0.1.1
+moon add marianoguerra/megalodon-http@0.1.1
 ```
 
 Add the packages to your `moon.pkg`:

@@ -15,7 +15,7 @@ pub(all) struct Params {
 
 ///|
 pub fn Params::new() -> Params {
-  { entries: [] }
+  { entries: [], }
 }
 
 ///|
@@ -61,7 +61,7 @@ pub fn Params::put_strings(
 
 ///|
 pub fn Params::encode(self : Self) -> String {
-  let out = StringBuilder::new()
+  let out = StringBuilder()
   let mut first = true
   fn append(key : String, value : String) -> Unit {
     if !first {
@@ -95,7 +95,7 @@ pub fn Params::encode(self : Self) -> String {
 /// RFC 3986 percent-encoding over UTF-8 bytes.
 pub fn percent_encode(text : String) -> String {
   let bytes = @utf8.encode(text)
-  let out = StringBuilder::new(size_hint=bytes.length())
+  let out = StringBuilder(size_hint=bytes.length())
   for byte in bytes {
     let value = byte.to_int()
     if is_unreserved(value) {

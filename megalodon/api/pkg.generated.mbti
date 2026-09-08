@@ -6,7 +6,7 @@ import {
 }
 
 // Values
-pub const USER_AGENT : String = "marianoguerra-megalodon-mb/0.1.0"
+pub const USER_AGENT : String = "marianoguerra-megalodon-mb/0.1.1"
 
 pub fn build_request(String, String, HttpMethod, query? : Params, body? : RequestBody, access_token? : String, user_agent? : String, extra_headers? : Map[String, String]) -> HttpRequest
 
